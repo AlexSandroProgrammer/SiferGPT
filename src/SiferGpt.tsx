@@ -1,3 +1,12 @@
+import { RouterProvider } from "react-router-dom";
+import { router } from "./presentation/router/router";
+
+//* funcionalidad inicial de la aplicacion
 export const SiferGpt = () => {
-  return <h1 className="text-3xl font-bold underline">SiferGPT</h1>;
+  return (
+    // Ruta raiz de la app
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 };

@@ -1,10 +1,11 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import { AssistantPage } from "../pages/assistant";
 import { AudioToTextPage, TextToAudioPage } from "../pages/audio";
 import { ImageGenerationPage, ImageTunningPage } from "../pages/image";
 import { TranslatePage } from "../pages/translate";
 import { ProsConsPage, ProsConsStreamPage } from "../pages/stream";
 import { OrthographyPage } from "../pages/orthography";
+import { DashboardLayout } from "../layouts";
 
 //* rutas de la aplicacion
 export const menuRoutes = [
@@ -76,7 +77,16 @@ export const menuRoutes = [
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: "",
-    children: [],
+    element: <DashboardLayout />,
+    children: [
+      ...menuRoutes.map((route) => ({
+        path: route.to,
+        element: route.component,
+      })),
+      {
+        path: "/",
+        element: <Navigate to={menuRoutes[0].to} />,
+      },
+    ],
   },
 ]);
